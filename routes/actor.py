@@ -5,9 +5,9 @@ from models.Actor import actors
 actor = APIRouter()
 
 @actor.get("/actor/listar")
-def getActors():
+async def getActors():
     return conn.execute(actors.select()).fetchall()
 
 @actor.get("/actor/listar/{id}")
-def getActorsId(id: int):
+async def getActorsId(id: int):
     return conn.execute(actors.select().where(actors.c.actor_id == id)).first()
